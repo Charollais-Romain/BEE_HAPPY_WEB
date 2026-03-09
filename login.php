@@ -2,7 +2,7 @@
 session_start();
 
 // Infos de connexion à la base de données
-$host = "10.187.52.4/phpmyadmin";
+$host = "10.187.52.4";
 $dbname = "morganl_b";
 $user = "morganl";
 $pass = "morganl"; // ton mot de passe MySQL
@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $stmt->execute([$login]);
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    if ($user && password_verify($password, $user['password'])) {
+    if ($user && $password === $user['password']) {
         $_SESSION['user'] = $user['login'];
         header("Location: accueil.php");
         exit();
