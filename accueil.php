@@ -14,7 +14,7 @@ if(!isset($_SESSION['user'])){
 <meta charset="UTF-8">
 <title>Accueil</title>
 <style>
-/* body{
+body{
     font-family: Arial, sans-serif;
     background:#f2f2f2;
     display:flex;
@@ -44,7 +44,7 @@ button{
 
 button:hover{
     background:#0056b3;
-}*/
+}
 </style>
 </head>
 <body>
