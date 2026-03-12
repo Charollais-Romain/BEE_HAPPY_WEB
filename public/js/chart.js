@@ -11,6 +11,7 @@ borderWidth: 2
 }]
 },
 options: {
-responsive: true
+responsive: true,
+maintainAspectRatio: false,
 }
 });

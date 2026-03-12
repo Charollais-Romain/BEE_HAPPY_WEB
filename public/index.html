@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
 <head>
 
@@ -10,6 +10,11 @@
 #map{
 height:400px;
 margin-bottom:20px;
+}
+
+#temperatureChart {
+    width: 40px;
+    height: 20px;
 }
 </style>
 
@@ -29,6 +34,85 @@ margin-bottom:20px;
 
 <script src="js/map.js"></script>
 <script src="js/chart.js"></script>
+<script src="js/socket.js"></script>
+
+</body>
+</html> -->
+
+<!DOCTYPE html>
+
+<html lang="fr">
+
+<head>
+<meta charset="UTF-8">
+<title>Dashboard Ruches Connectées</title>
+
+<!-- Leaflet CSS -->
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+
+<style>
+
+body{
+font-family: Arial, sans-serif;
+margin:0;
+padding:20px;
+background:#f4f4f4;
+}
+
+h2{
+text-align:center;
+}
+
+#map{
+height:400px;
+margin-bottom:30px;
+border-radius:10px;
+}
+
+/* Conteneur du graphique */
+.chart-container{
+width:400px;
+height:200px;
+margin:auto;
+background:white;
+padding:10px;
+border-radius:10px;
+box-shadow:0 2px 8px rgba(0,0,0,0.1);
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h2>🐝 Dashboard Ruche Connectée</h2>
+
+<!-- Carte -->
+
+<div id="map"></div>
+
+<!-- Graphique -->
+
+<div class="chart-container">
+<canvas id="temperatureChart"></canvas>
+</div>
+
+<!-- Librairies -->
+
+<script src="/socket.io/socket.io.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+<!-- Scripts -->
+
+<script src="js/map.js"></script>
+
+<script src="js/chart.js"></script>
+
 <script src="js/socket.js"></script>
 
 </body>
