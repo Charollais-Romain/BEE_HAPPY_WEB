@@ -6,7 +6,7 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
 
 const hives = [
   {name:"Ruche 1", lat:45.83547, lng:1.2645},
-  {name:"Ruche 2", lat:45.83210, lng:1.2700},
+  {name:"Ruche 2", lat:45.87676, lng:1.1360},
   {name:"Ruche 3", lat:45.82850, lng:1.2580},
   {name:"Ruche 4", lat:45.84000, lng:1.2500}
 ];
