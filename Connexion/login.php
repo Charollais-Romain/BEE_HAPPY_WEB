@@ -5,7 +5,7 @@ session_start();
 $host = "10.187.52.4";
 $dbname = "morganl_b";
 $user = "morganl";
-$pass = "morganl"; // ton mot de passe MySQL
+$pass = "morganl";
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $user, $pass);
@@ -18,15 +18,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $login = $_POST['login'];
     $password = $_POST['password'];
 
-    // Préparer et exécuter la requête
     $stmt = $pdo->prepare("SELECT * FROM Ruche__utilisateur WHERE login = ?");
     $stmt->execute([$login]);
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if ($user && $password === $user['password']) {
+
         $_SESSION['user'] = $user['login'];
-        header("Location: accueil.php");
+
+        // Création du token
+        $token = base64_encode($user['login'] . "|" . time());
+
+        // Redirection vers Node.js
+        header("Location: http://localhost:3000/dashboard?token=".$token);
         exit();
+
     } else {
         $error = "Login ou mot de passe incorrect";
     }
