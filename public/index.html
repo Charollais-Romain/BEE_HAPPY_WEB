@@ -31,6 +31,18 @@
 
 <script src="/socket.io/socket.io.js"></script>
 
+<script>
+    const socket = io();
+    
+    socket.on("connect", () => {
+        console.log("Connecté au serveur");
+    });
+    
+    socket.on("nouvelleDonnee", (data) => {
+        console.log("Donnée reçue :", data);
+    });
+    </script>
+
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
