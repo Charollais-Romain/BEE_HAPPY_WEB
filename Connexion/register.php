@@ -30,19 +30,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     elseif (strlen($password) < 6) {
-        $message = "Le mot de passe doit contenir au moins 6 caractères.";
+        $message = "Le mot de passe doit contenir au moins 6 caracteres.";
     }
 
     else {
 
-        // Check if login or email already exists
+        // Checks if login or email already exists
         $check = $conn->prepare("SELECT id_user FROM Ruche__utilisateur WHERE email = ? OR login = ?");
         $check->bind_param("ss", $email, $login);
         $check->execute();
         $result = $check->get_result();
 
         if ($result->num_rows > 0) {
-            $message = "Un compte avec cet email ou ce login existe déjà.";
+            $message = "Un compte avec cet email ou ce login existe deja.";
         }
 
         else {
@@ -60,15 +60,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 // Auto login after register
                 $_SESSION["login"] = $login;
 
+<<<<<<< Updated upstream
                 // Create token for Node.js
                 $token = urlencode(base64_encode($login . "|" . time()));
+=======
+                // Creates token for Node.js
+            $token = base64_encode($login . "|" . time());
+>>>>>>> Stashed changes
 
-            // Redirect to Node dashboard
+            // Redirects to Node dashboard
             header("Location: http://localhost:3000/dashboard?token=" . $token);
             exit();
 
             } else {
-                $message = "Erreur lors de la création du compte.";
+                $message = "Erreur lors de la creation du compte.";
             }
 
             $stmt->close();
@@ -84,17 +89,15 @@ $conn->close();
 <!DOCTYPE html>
 <html>
 <head>
-<title>Créer un compte</title>
-<link rel="stylesheet" href="css/register.css">
-
+<title>Creer un compte</title>
+<link rel="stylesheet" href="../css/register.css">
 </head>
 
 
 <body>
 
 <div class="container">
-
-<h2>Créer un compte</h2>
+<h2>Creer un compte</h2>
 
 <?php if(!empty($message)) { ?>
 <p class="error"><?php echo $message; ?></p>
@@ -108,13 +111,13 @@ $conn->close();
 <label>Email</label>
 <input type="email" name="email" required>
 
-<label>Téléphone</label>
+<label>Telephone</label>
 <input type="tel" name="telephone" required>
 
 <label>Mot de passe</label>
 <input type="password" name="password" required>
 
-<button type="submit">Créer un compte</button>
+<button type="submit">Creer un compte</button>
 
 </form>
 
