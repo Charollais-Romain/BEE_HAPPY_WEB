@@ -1,9 +1,20 @@
+// const socket = io();
+
+// socket.on("nouvelleDonnee", (data) => {
+
+// console.log(data);
 const socket = io();
 
+socket.on("connect", () => {
+    console.log("Connecté au serveur");
+});
+
 socket.on("nouvelleDonnee", (data) => {
+    console.log("Donnée reçue :", data);
 
-console.log(data);
-
+    // envoyer les données au graphique
+    updateChart(data);
+});
 
 // mise à jour graphique
 chart.data.labels.push(new Date().toLocaleTimeString());
@@ -23,4 +34,3 @@ marker.setPopupContent(
 "Humidité : " + data.humidite + "%"
 );
 
-});
