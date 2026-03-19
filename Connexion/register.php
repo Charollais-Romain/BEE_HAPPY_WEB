@@ -61,7 +61,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $_SESSION["login"] = $login;
 
                 // Create token for Node.js
-            $token = base64_encode($login . "|" . time());
+                $token = urlencode(base64_encode($login . "|" . time()));
 
             // Redirect to Node dashboard
             header("Location: http://localhost:3000/dashboard?token=" . $token);
