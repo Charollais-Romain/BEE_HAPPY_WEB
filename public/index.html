@@ -1,69 +1,38 @@
 <!DOCTYPE html>
-
 <html lang="fr">
 
 <head>
-<meta charset="UTF-8">
-<title>Dashboard Ruches Connectées</title>
+    <meta charset="UTF-8">
+    <title>Dashboard Ruches Connectées</title>
 
-<!-- Leaflet CSS -->
-<link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css">
 
-
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 </head>
 
 <body>
 
-<h2>Dashboard Ruche Connectée</h2>
+    <h2>Dashboard Ruche Connectée</h2>
 
-<!-- Carte -->
+    <!-- Carte -->
+    <div id="map"></div>
 
-<div id="map"></div>
+    <!-- Graphique -->
+    <div class="chart-container">
+        <canvas id="temperatureChart"></canvas>
+    </div>
 
-<!-- Graphique -->
+    <!-- Librairies -->
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 
-<div class="chart-container">
-<canvas id="temperatureChart"></canvas>
-</div>
-
-<!-- Librairies -->
-
-<script src="/socket.io/socket.io.js"></script>
-
-<<<<<<< Updated upstream
-<script>
-    const socket = io();
-    
-    socket.on("connect", () => {
-        console.log("Connecté au serveur");
-    });
-    
-    socket.on("nouvelleDonnee", (data) => {
-        console.log("Donnée reçue :", data);
-    });
-    </script>
-=======
-<!-- <script>
-const socket = io();
-
-socket.on("nouvelleDonnee", (data) => {
-    console.log(data);
-});
-</script> -->
->>>>>>> Stashed changes
-
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-
-<!-- Scripts js-->
-
-<script src="js/map.js"></script>
-
-<script src="js/chart.js"></script>
-
-<script src="js/socket.js"></script>
+    <!-- Scripts JS -->
+    <script src="js/map.js"></script>
+    <script src="js/chart.js"></script>
+    <script src="js/socket.js"></script>
 
 </body>
 </html>
