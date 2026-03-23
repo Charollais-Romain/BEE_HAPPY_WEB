@@ -14,6 +14,7 @@
 
 <body>
 
+    <button id="logoutBtn" type="button">Déconnexion</button>
     <h2>Dashboard Ruche Connectée</h2>
 
     <!-- Carte -->
@@ -33,6 +34,14 @@
     <script src="js/map.js"></script>
     <script src="js/chart.js"></script>
     <script src="js/socket.js"></script>
+    <script>
+        document.getElementById("logoutBtn").addEventListener("click", () => {
+        
+            // Remove token from URL (client-side protection)
+            window.location.href = "http://10.187.52.4/~morganl/ProjetRuche/logout.php";
+        
+        });
+        </script>
 
 </body>
 </html>

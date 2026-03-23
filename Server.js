@@ -43,7 +43,7 @@ app.get("/dashboard", (req, res) => {
 io.on("connection", (socket) => {
     console.log("Client connecté");
 
-    // Send initial data
+    // Sends initial data
     const sendData = () => {
         const data = {
             temperature: (34 + Math.random()).toFixed(2),
@@ -55,7 +55,7 @@ io.on("connection", (socket) => {
 
     sendData();
 
-    // Send data every 3 seconds
+    // Sends data every 3 seconds
     const interval = setInterval(sendData, 3000);
 
     socket.on("disconnect", () => {

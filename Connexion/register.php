@@ -17,11 +17,15 @@ $message = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $login = trim($_POST["login"]);
+    $password = $_POST["password"];
+    $prenom = $_POST["prenom"];
+    $nom = $_POST["nom"];
     $email = trim($_POST["email"]);
     $telephone = trim($_POST["telephone"]);
-    $password = $_POST["password"];
+    $adresse = $_POST["adresse"];
+    
 
-    if (empty($login) || empty($email) || empty($telephone) || empty($password)) {
+    if (empty($login) || empty($email) || empty($telephone) || empty($password) || empty($prenom) || empty($nom) || empty($adresse)) {
         $message = "Tous les champs sont requis.";
     }
 
@@ -39,36 +43,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $check = $conn->prepare("SELECT id_user FROM Ruche__utilisateur WHERE email = ? OR login = ?");
         $check->bind_param("ss", $email, $login);
         $check->execute();
-        $result = $check->get_result();
+        $check->store_result();
 
-        if ($result->num_rows > 0) {
+        if ($check->num_rows > 0) {
             $message = "Un compte avec cet email ou ce login existe deja.";
         }
 
         else {
 
-            $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+            //$hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
             // Default role
             $role = "user";
 
-            $stmt = $conn->prepare("INSERT INTO Ruche__utilisateur (login, email, telephone, password, role) VALUES (?, ?, ?, ?, ?)");
-            $stmt->bind_param("sssss", $login, $email, $telephone, $hashed_password, $role);
+            $stmt = $conn->prepare("INSERT INTO Ruche__utilisateur (prenom, nom, login, password, email, telephone, adresse, role) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+            $stmt->bind_param("ssssssss", $prenom, $nom, $login, $email, $telephone, $password, $role);
 
             if ($stmt->execute()) {
 
                 // Auto login after register
                 $_SESSION["login"] = $login;
 
-<<<<<<< Updated upstream
-                // Create token for Node.js
-                $token = urlencode(base64_encode($login . "|" . time()));
-=======
-                // Creates token for Node.js
-            $token = base64_encode($login . "|" . time());
->>>>>>> Stashed changes
 
-            // Redirects to Node dashboard
+                // Creer un token pour Node.js
+                $token = urlencode(base64_encode($login . "|" . time()));
+
+
+            // Redirections to Node dashboard
             header("Location: http://localhost:3000/dashboard?token=" . $token);
             exit();
 
@@ -108,14 +109,24 @@ $conn->close();
 <label>Login</label>
 <input type="text" name="login" required>
 
+<label>Mot de passe</label>
+<input type="password" name="password" required>
+
+<label>Prenom</label>
+<input type="prenom" name="prenom" required>
+
+<label>Nom</label>
+<input type="nom" name="nom" required>
+
+<label>Adresse</label>
+<input type="adresse" name="adresse" required>
+
 <label>Email</label>
 <input type="email" name="email" required>
 
 <label>Telephone</label>
 <input type="tel" name="telephone" required>
 
-<label>Mot de passe</label>
-<input type="password" name="password" required>
 
 <button type="submit">Creer un compte</button>
 
