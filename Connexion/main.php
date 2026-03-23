@@ -21,7 +21,7 @@ if (!$data) {
     exit();
 }
 
-// Extract values
+
 $poids = $data["poids"] ?? null;
 $temp = $data["temp"] ?? null;
 $lat = $data["lat"] ?? null;
@@ -34,7 +34,7 @@ if ($poids === null || $temp === null || $lat === null || $lng === null || $id_c
     exit();
 }
 
-// Insert into DB
+//Insert dans la BDD
 $stmt = $conn->prepare("
     INSERT INTO Ruche__mesure (poids, temp, lat, lng, date_heure, id_capteur)
     VALUES (?, ?, ?, ?, NOW(), ?)
