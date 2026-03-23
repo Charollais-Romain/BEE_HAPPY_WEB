@@ -8,7 +8,7 @@ const chart = new Chart(ctx, {
             label: "Température ruche",
             data: [],
             borderWidth: 2,
-            tension: 0.3 // smooth curve
+            //tension: 0.3
         }]
     },
     options: {

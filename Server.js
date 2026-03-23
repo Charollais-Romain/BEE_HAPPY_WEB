@@ -43,11 +43,22 @@ app.get("/dashboard", (req, res) => {
 io.on("connection", (socket) => {
     console.log("Client connecté");
 
-    // Sends initial data
+    const hives = [
+        { id: "Ruche 1", lat: 45.83547, lng: 1.2645 },
+        { id: "Ruche 2", lat: 45.87676, lng: 1.1360 },
+        { id: "Ruche 3", lat: 45.82850, lng: 1.2580 },
+        { id: "Ruche 4", lat: 45.84000, lng: 1.2500 }
+    ];
+
     const sendData = () => {
+        const hive = hives[Math.floor(Math.random() * hives.length)];
+
         const data = {
-            temperature: (34 + Math.random()).toFixed(2),
-            humidite: (60 + Math.random() * 10).toFixed(2)
+            hiveId: hive.id,
+            lat: hive.lat,
+            lng: hive.lng,
+            temperature: parseFloat((34 + Math.random()).toFixed(2)),
+            humidite: parseFloat((60 + Math.random() * 10).toFixed(2))
         };
 
         socket.emit("nouvelleDonnee", data);

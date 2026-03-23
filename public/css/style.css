@@ -10,6 +10,7 @@ h2 {
     margin-bottom: 40px;
 }
 
+
 /* Container to hold chart and map side by side */
 .dashboard {
     display: flex;
