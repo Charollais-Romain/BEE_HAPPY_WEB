@@ -7,26 +7,34 @@ socket.on("connect", () => {
     console.log("Connecté au serveur");
 });
 
-socket.on("nouvelleDonnee", (data) => {
-    console.log("Donnée reçue :", data);
+socket.on("toutesDonnees", (hives) => {
+    hives.forEach(addOrUpdateHive);
+});
 
+socket.on("nouvelleDonnee", addOrUpdateHive);
+
+// 👇 THIS is your old code moved into a function
+function addOrUpdateHive(data) {
     const { hiveId, temperature, humidite, lat, lng } = data;
 
     if (!lat || !lng) return;
 
-    // Auto-select first hive
     if (!selectedHive) {
         selectedHive = hiveId;
     }
 
     if (!markers[hiveId]) {
         const marker = L.marker([lat, lng]).addTo(map);
-
+    
+        // 👇 TRÈS IMPORTANT
+        marker.bindPopup("");
+    
         marker.on("click", () => {
             selectedHive = hiveId;
+            marker.openPopup(); // optionnel mais utile
             console.log("Ruche sélectionnée :", hiveId);
         });
-
+    
         markers[hiveId] = marker;
     }
 
@@ -39,4 +47,4 @@ socket.on("nouvelleDonnee", (data) => {
     if (selectedHive === hiveId) {
         markers[hiveId].openPopup();
     }
-});
+}

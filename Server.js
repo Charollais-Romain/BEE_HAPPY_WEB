@@ -61,7 +61,13 @@ io.on("connection", (socket) => {
             humidite: parseFloat((60 + Math.random() * 10).toFixed(2))
         };
 
-        socket.emit("nouvelleDonnee", data);
+        socket.emit("toutesDonnees", hives.map(hive => ({
+            hiveId: hive.id,
+            lat: hive.lat,
+            lng: hive.lng,
+            temperature: parseFloat((34 + Math.random()).toFixed(2)),
+            humidite: parseFloat((60 + Math.random() * 10).toFixed(2))
+        })));
     };
 
     sendData();
