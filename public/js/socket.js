@@ -7,13 +7,22 @@ socket.on("connect", () => {
     console.log("Connecté au serveur");
 });
 
+// socket.on("toutesDonnees", (hives) => {
+//     hives.forEach(addOrUpdateHive);
+// });
+
+
+
 socket.on("toutesDonnees", (hives) => {
-    hives.forEach(addOrUpdateHive);
+    hives.forEach(hive => {
+        addOrUpdateHive(hive);
+        updateChart(hive.temperature, hive.hiveId);
+    });
 });
 
 socket.on("nouvelleDonnee", addOrUpdateHive);
 
-// 👇 THIS is your old code moved into a function
+
 function addOrUpdateHive(data) {
     const { hiveId, temperature, humidite, lat, lng } = data;
 
@@ -26,12 +35,11 @@ function addOrUpdateHive(data) {
     if (!markers[hiveId]) {
         const marker = L.marker([lat, lng]).addTo(map);
     
-        // 👇 TRÈS IMPORTANT
         marker.bindPopup("");
     
         marker.on("click", () => {
             selectedHive = hiveId;
-            marker.openPopup(); // optionnel mais utile
+            marker.openPopup(); 
             console.log("Ruche sélectionnée :", hiveId);
         });
     

@@ -1,4 +1,4 @@
-body{
+/* body{
     font-family: Arial, sans-serif;
     background:#f2f2f2;
     display:flex;
@@ -32,4 +32,105 @@ button:hover{
 .error{
     color:red;
     text-align:center;
+} */
+
+/* Fond général */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: url("background-honey.jpg") no-repeat center center/cover;
+}
+
+
+/* Overlay léger pour lisibilité */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.6);
+    z-index: -1;
+}
+
+/* Titre principal */
+h1 {
+    text-align: center;
+    font-size: 48px;
+    font-weight: bold;
+    color: #333;
+    margin-top: 20px;
+}
+
+/* Conteneur principal */
+.login-container {
+    width: 400px;
+    margin: 40px auto;
+    padding: 30px;
+    border: 5px solid #f7941d;
+    border-radius: 10px;
+    background: rgba(255, 200, 100, 0.6);
+    backdrop-filter: blur(5px);
+    text-align: center;
+}
+
+/* Titre de section */
+.login-container h2 {
+    color: #f7941d;
+    font-size: 26px;
+    margin-bottom: 20px;
+}
+
+/* Labels */
+.login-container label {
+    display: block;
+    text-align: left;
+    margin: 10px 0 5px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Inputs */
+.login-container input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #aaa;
+    margin-bottom: 15px;
+    font-size: 14px;
+}
+
+/* Ligne options */
+.options {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    margin-bottom: 15px;
+}
+
+/* Bouton */
+.login-container button {
+    background: #f7941d;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    font-size: 18px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.login-container button:hover {
+    background: #e68310;
+}
+
+/* Effet alvéoles (optionnel) */
+.login-container {
+    background-image: 
+        radial-gradient(circle at 1px 1px, rgba(255,255,255,0.3) 1px, transparent 0);
+    background-size: 20px 20px;
+}
+
+.error {
+    color: red;
+    margin-top: 10px;
+    font-weight: bold;
 }
