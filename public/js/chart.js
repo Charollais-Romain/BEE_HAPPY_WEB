@@ -10,6 +10,13 @@ const chart = new Chart(ctx, {
         responsive: true,
         maintainAspectRatio: false,
         animation: false,
+        plugins: {
+            title: {
+                display: true,
+                text: "Temperature (°C)",
+                align: "center"
+            }
+        },
         scales: {
             y: {
                 beginAtZero: false
