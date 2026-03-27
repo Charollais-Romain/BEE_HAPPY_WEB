@@ -1,0 +1,7 @@
+# Apache : répertoire racine du site = ce dossier `public`
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+    # Redirection optionnelle de l'ancienne page statique
+    RewriteRule ^index\.html$ index.php [L,R=302]
+</IfModule>
