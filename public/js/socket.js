@@ -7,11 +7,6 @@ socket.on("connect", () => {
     console.log("Connecté au serveur");
 });
 
-// socket.on("toutesDonnees", (hives) => {
-//     hives.forEach(addOrUpdateHive);
-// });
-
-
 
 socket.on("toutesDonnees", (hives) => {
     hives.forEach(hive => {
