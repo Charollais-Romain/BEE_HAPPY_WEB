@@ -38,10 +38,10 @@ function updateChart(temperature, hiveId) {
         }
     }
 
-    // Find dataset for this hive
+    // Find dataset
     let dataset = chart.data.datasets.find(ds => ds.label === hiveId);
 
-    // If not exist → create it
+    
     if (!dataset) {
         const colors = {
             "Ruche 1": "red",

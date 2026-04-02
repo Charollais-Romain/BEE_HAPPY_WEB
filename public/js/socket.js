@@ -47,7 +47,7 @@ function addOrUpdateHive(data) {
         Humidité : ${humidite}%`
     );
 
-    if (selectedHive === hiveId) {
-        markers[hiveId].openPopup();
-    }
+    // if (selectedHive === hiveId) {
+    //     markers[hiveId].openPopup();
+    // }
 }
