@@ -62,6 +62,10 @@ function updateChart(temperature, hiveId) {
     }
 
     dataset.data.push(temperature);
+    if (chart.data.labels.length > 10) {
+                 chart.data.labels.shift();
+                 chart.data.datasets[0].data.shift();
+             }
 
     chart.update();
 }
