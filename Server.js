@@ -202,7 +202,7 @@ server.listen(3000, () => {
 //             data.temperature,
 //             data.lat,
 //             data.lng,
-//             1 // id capteur (à adapter en focntion)
+//             1 // id capteur (à adapter)
 //         ]);
 
 //         // ENVOI FRONT

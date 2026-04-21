@@ -65,3 +65,90 @@ function updateChart(temperature, hiveId) {
 
     chart.update();
 }
+
+
+
+
+
+
+/****************************************************************************************************************************************/
+
+// const ctx = document.getElementById("temperatureChart").getContext("2d");
+
+// // Initialisation du chart
+// const chart = new Chart(ctx, {
+//     type: "line",
+//     data: {
+//         labels: [],
+//         datasets: [{
+//             label: "Température (°C)",
+//             data: [],
+//             borderWidth: 2,
+//             tension: 0.3
+//         }]
+//     },
+//     options: {
+//         responsive: true,
+//         maintainAspectRatio: false,
+//         animation: false,
+//         scales: {
+//             x: {
+//                 ticks: {
+//                     maxTicksLimit: 6 // évite que ça explose visuellement
+//                 }
+//             },
+//             y: {
+//                 beginAtZero: false
+//             }
+//         }
+//     }
+// });
+
+
+// //  CHARGEMENT HISTORIQUE
+// fetch("http://localhost:3000/api/mesures")
+//     .then(res => res.json())
+//     .then(data => {
+
+//         // on inverse pour ordre chronologique
+//         data.reverse();
+
+//         const labels = data.map(d => {
+//             const date = new Date(d.date_heure);
+//             return date.toLocaleTimeString();
+//         });
+
+//         const temperatures = data.map(d => d.temp);
+
+//         chart.data.labels = labels;
+//         chart.data.datasets[0].data = temperatures;
+
+//         chart.update();
+//     })
+//     .catch(err => console.error("Erreur fetch :", err));
+
+
+// // 2. TEMPS RÉEL (Socket.io)
+// const socket = io("http://localhost:3000");
+
+// socket.on("toutesDonnees", (dataArray) => {
+
+//     // ici on reçois plusieurs ruches
+//     // on prend la première (tu pourras améliorer plus tard)
+//     const data = dataArray[0];
+
+//     const now = new Date().toLocaleTimeString();
+
+//     chart.data.labels.push(now);
+//     chart.data.datasets[0].data.push(data.temperature);
+
+//     // limite à 50 points pour éviter bug/perf
+//     if (chart.data.labels.length > 50) {
+//         chart.data.labels.shift();
+//         chart.data.datasets[0].data.shift();
+//     }
+
+//     chart.update();
+// });
+
+/*****************************************************************************************************************************************/
