@@ -12,12 +12,12 @@
 </head>
 
 <body>
+    <button id="logoutBtn" type="button">Déconnexion</button>
     <?php   
     require_once 'auth.php';
     ?>
     <?php include 'header.php'; ?>
 
-    <button id="logoutBtn" type="button">Déconnexion</button>
     <h2>Dashboard Ruche Connectée</h2>
 
     <!-- Carte -->
@@ -28,7 +28,7 @@
         <canvas id="temperatureChart"></canvas>
     </div>
 
-    <?php include 'footer.php'; ?>
+   
 
     <!-- Librairies -->
     <script src="/socket.io/socket.io.js"></script>
@@ -47,6 +47,6 @@
         
         });
         </script>
-
+ <?php include 'footer.php'; ?>
 </body>
 </html>
