@@ -88,17 +88,18 @@ $conn->close();
 ?>
 
 <!DOCTYPE html>
+<meta charset="UTF-8">
 <html>
 <head>
-<title>Creer un compte</title>
-<link rel="stylesheet" href="../public/assets/css/style.css">
+<title>Créer un compte</title>
+<link rel="stylesheet" href="style.css">
 </head>
 
 
 <body>
 
 <div class="container">
-<h2>Creer un compte</h2>
+<h2>Créer un compte</h2>
 
 <?php if(!empty($message)) { ?>
 <p class="error"><?php echo $message; ?></p>
@@ -112,7 +113,7 @@ $conn->close();
 <label>Mot de passe</label>
 <input type="text" name="password" required>
 
-<label>Prenom</label>
+<label>Prénom</label>
 <input type="text" name="prenom" required>
 
 <label>Nom</label>
