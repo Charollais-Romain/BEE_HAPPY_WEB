@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
     <meta charset="UTF-8">
     <title>Dashboard Ruches Connectées</title>
@@ -13,6 +12,10 @@
 </head>
 
 <body>
+    <?php   
+    require_once 'auth.php';
+    ?>
+    <?php include 'header.php'; ?>
 
     <button id="logoutBtn" type="button">Déconnexion</button>
     <h2>Dashboard Ruche Connectée</h2>
@@ -24,6 +27,8 @@
     <div class="chart-container">
         <canvas id="temperatureChart"></canvas>
     </div>
+
+    <?php include 'footer.php'; ?>
 
     <!-- Librairies -->
     <script src="/socket.io/socket.io.js"></script>

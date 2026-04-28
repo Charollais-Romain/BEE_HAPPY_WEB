@@ -57,7 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $role = "user";
 
             $stmt = $conn->prepare("INSERT INTO Ruche__utilisateur (prenom, nom, login, password, email, telephone, adresse, role) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-            $stmt->bind_param("ssssssss", $prenom, $nom, $login, $email, $telephone, $password, $role);
+            $stmt->bind_param("ssssssss", $prenom, $nom, $login, $password, $email, $telephone, $adresse, $role);
 
             if ($stmt->execute()) {
 
@@ -91,7 +91,7 @@ $conn->close();
 <html>
 <head>
 <title>Creer un compte</title>
-<link rel="stylesheet" href="../css/register.css">
+<link rel="stylesheet" href="../public/assets/css/style.css">
 </head>
 
 
@@ -110,22 +110,22 @@ $conn->close();
 <input type="text" name="login" required>
 
 <label>Mot de passe</label>
-<input type="password" name="password" required>
+<input type="text" name="password" required>
 
 <label>Prenom</label>
-<input type="prenom" name="prenom" required>
+<input type="text" name="prenom" required>
 
 <label>Nom</label>
-<input type="nom" name="nom" required>
+<input type="text" name="nom" required>
 
 <label>Adresse</label>
-<input type="adresse" name="adresse" required>
+<input type="text" name="adresse" required>
 
 <label>Email</label>
-<input type="email" name="email" required>
+<input type="text" name="email" required>
 
 <label>Telephone</label>
-<input type="tel" name="telephone" required>
+<input type="text" name="telephone" required>
 
 
 <button type="submit">Creer un compte</button>

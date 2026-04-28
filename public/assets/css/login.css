@@ -34,7 +34,7 @@ button:hover{
     text-align:center;
 } */
 
-/* Fond général */
+/* General BG */
 body {
     margin: 0;
     font-family: Arial, sans-serif;
@@ -51,7 +51,7 @@ body::before {
     z-index: -1;
 }
 
-/* Titre principal */
+/* Main Title */
 h1 {
     text-align: center;
     font-size: 48px;
@@ -60,7 +60,7 @@ h1 {
     margin-top: 20px;
 }
 
-/* Conteneur principal */
+/* Main Container */
 .login-container {
     width: 400px;
     margin: 40px auto;
@@ -72,7 +72,7 @@ h1 {
     text-align: center;
 }
 
-/* Titre de section */
+/* Section Title */
 .login-container h2 {
     color: #f7941d;
     font-size: 26px;
@@ -98,7 +98,7 @@ h1 {
     font-size: 14px;
 }
 
-/* Ligne options */
+/* Line options */
 .options {
     display: flex;
     justify-content: space-between;
@@ -106,7 +106,7 @@ h1 {
     margin-bottom: 15px;
 }
 
-/* Bouton */
+/* Button */
 .login-container button {
     background: #f7941d;
     border: none;
@@ -122,7 +122,7 @@ h1 {
     background: #e68310;
 }
 
-/* Effet alvéoles (optionnel) */
+/* Alveolus Effect (optional) */
 .login-container {
     background-image: 
         radial-gradient(circle at 1px 1px, rgba(255,255,255,0.3) 1px, transparent 0);
