@@ -12,7 +12,9 @@ session_start();
 <body>
 
 <nav class="navbar">
+<div style="text-align: center;">
     <h2>🐝 Bee Happy</h2>
+</div>
     <div>
         <a href="index.php">Dashboard</a>
         <a href="alerts.php">Alertes</a>

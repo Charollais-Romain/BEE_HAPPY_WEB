@@ -17,9 +17,11 @@
     require_once 'auth.php';
     ?>
     <?php include 'header.php'; ?>
-
+    
+    <div style="text-align: center;">
     <h2>Dashboard Ruche Connectée</h2>
-
+    </div>
+    
     <!-- Carte -->
     <div id="map"></div>
 
