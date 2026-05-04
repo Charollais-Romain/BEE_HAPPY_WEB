@@ -8,6 +8,6 @@ $_SESSION = [];
 session_destroy();
 
 // Redirection vers la page de login
-header("Location: login.php");
+header("Location: https://ruches.innovelectronique.fr/login.php");
 exit();
 ?>

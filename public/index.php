@@ -25,7 +25,6 @@
     <div class="dashboard">
     <!-- Carte -->
     <div id="map"></div>
-
     <!-- Graphique -->
     <div class="chart-container">
         <canvas id="temperatureChart"></canvas>
@@ -39,16 +38,17 @@
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 
     <!-- Scripts JS -->
-    <script src="js/map.js"></script>
-    <script src="js/chart.js"></script>
-    <script src="js/socket.js"></script>
+    <script src="map.js"></script>
+    <script src="chart.js"></script>
+    <script src="socket.js"></script>
     <script>
         document.getElementById("logoutBtn").addEventListener("click", () => {
         
             // Remove token from URL (client-side protection)
-            window.location.href = "http://10.187.52.4/~morganl/ProjetRuche/logout.php";
+            window.location.href = "https://ruches.innovelectronique.fr/login.php";
         
         });
+        
         </script>
  <?php include 'footer.php'; ?>
 </body>
