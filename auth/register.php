@@ -69,7 +69,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $token = urlencode(base64_encode($login . "|" . time()));
 
 
-            // Redirections to Node dashboard
+            // Redirections vers dashboard Node 
             header("Location: http://localhost:3000/dashboard?token=" . $token);
             exit();
 
@@ -92,7 +92,7 @@ $conn->close();
 <html>
 <head>
 <title>Créer un compte</title>
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="register.css">
 </head>
 
 

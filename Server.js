@@ -14,7 +14,7 @@ app.get("/dashboard", (req, res) => {
     const token = req.query.token;
 
     if (!token) {
-        return res.redirect("http://localhost/login.php");
+        return res.redirect("http://10.187.52.4/~morganl/ProjetRuche/login.php");
     }
 
     try {
@@ -29,13 +29,13 @@ app.get("/dashboard", (req, res) => {
         // Expiration check (1 hour)
         const now = Math.floor(Date.now() / 1000);
         if (now - timestamp > 3600) {
-            return res.redirect("http://localhost/login.php");
+            return res.redirect("http://10.187.52.4/~morganl/ProjetRuche/login.php");
         }
 
-        res.sendFile(path.join(__dirname, "public", "index.html"));
+        res.sendFile(path.join(__dirname, "public", "index.php"));
     } catch (err) {
         console.log("Token invalide");
-        res.redirect("http://localhost/login.php");
+        res.redirect("http://10.187.52.4/~morganl/ProjetRuche/login.php");
     }
 });
 
@@ -83,7 +83,7 @@ io.on("connection", (socket) => {
 
 // Start server
 server.listen(3000, () => {
-    console.log("Serveur lancé sur http://localhost:3000");
+    console.log("Serveur lancé sur http://10.187.52.4/~morganl/ProjetRuche/index.php");
 });
 
 

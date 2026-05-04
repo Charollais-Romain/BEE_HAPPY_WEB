@@ -5,7 +5,7 @@
     <title>Dashboard Ruches Connectées</title>
 
     <!-- Styles -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="style.css">
 
     <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
@@ -22,6 +22,7 @@
     <h2>Dashboard Ruche Connectée</h2>
     </div>
     
+    <div class="dashboard">
     <!-- Carte -->
     <div id="map"></div>
 
@@ -29,7 +30,7 @@
     <div class="chart-container">
         <canvas id="temperatureChart"></canvas>
     </div>
-
+    </div>
    
 
     <!-- Librairies -->

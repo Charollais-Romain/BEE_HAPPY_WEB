@@ -5,9 +5,9 @@
 </footer>
 
 <!-- Scripts JS -->
-<script src="assets/js/socket.js"></script>
-<script src="assets/js/chart.js"></script>
-<script src="assets/js/maps.js"></script>
+<script src="socket.js"></script>
+<script src="chart.js"></script>
+<script src="map.js"></script>
 
 </body>
 </html>

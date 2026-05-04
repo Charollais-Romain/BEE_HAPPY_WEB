@@ -1,73 +1,81 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 20px;
-    background: #f4f4f4;
+:root {
+    --honey: #f4b942;
+    --honey-dark: #d89c2b;
+    --wax: #fff3d1;
+    --brown: #4a2f1b;
+    --shadow: rgba(0, 0, 0, 0.1);
 }
 
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    margin: 0;
+    padding: 50px;
+    background: linear-gradient(135deg, #f8c26c, #ffd151);
+    color: var(--brown);
+}
+
+/* Header */
 h2 {
     text-align: center;
-    margin-bottom: 40px;
+    margin-bottom: 30px;
+    font-weight: bold;
 }
 
-
-/* Container to hold chart and map side by side */
+/* Dashboard layout */
 .dashboard {
-    display: flex;
-    justify-content: center; 
-    gap: 500px; 
-    flex-wrap: wrap; 
-}
-
-/* Chart container */
-.chart-container {
-    width: 400px;
-    height: 200px;
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+    max-width: 1000px;
     margin: auto;
 }
 
-/* Map container */
+/* Cards (effet ruche) */
+.chart-container,
 #map {
-    width: 400px;
+    background: var(--wax);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px var(--shadow);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Effet hexagone discret */
+.chart-container::before,
+#map::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle, rgba(0,0,0,0.03) 1px, transparent 1px);
+    background-size: 20px 20px;
+    opacity: 0.3;
+}
+
+/* Taille spécifique */
+.chart-container {
+    height: 250px;
+}
+
+#map {
     height: 400px;
-    border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    margin: auto;
 }
 
-/*****************************************************************************************************************************************/
-/* body {
-    margin: 0;
-    font-family: 'Segoe UI', sans-serif;
-    background: #f5f7fa;
-}
-
-.navbar {
-    background: #1e272e;
+/* Bouton logout */
+#logoutBtn {
+    display: block;
+    margin-left: auto;
+    margin-bottom: 15px;
+    padding: 10px 15px;
+    background: var(--honey-dark);
     color: white;
-    padding: 15px;
-    display: flex;
-    justify-content: space-between;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
 }
 
-.navbar a {
-    color: white;
-    margin-left: 15px;
-    text-decoration: none;
+#logoutBtn:hover {
+    background: #b87e1f;
+    transform: scale(1.05);
 }
-
-.container {
-    padding: 20px;
-}
-
-.card {
-    background: white;
-    border-radius: 12px;
-    padding: 20px;
-    margin-bottom: 20px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-} */

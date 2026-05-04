@@ -8,7 +8,7 @@
 
 body {
     height: 100vh;
-    background: linear-gradient(135deg, #667eea, #764ba2);
+    background: linear-gradient(135deg, #ef8834, #f6bf19f7);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -66,7 +66,7 @@ button {
     padding: 12px;
     border: none;
     border-radius: 8px;
-    background: linear-gradient(135deg, #667eea, #764ba2);
+    background: linear-gradient(135deg, #ef8834, #f6bf19f7);
     color: white;
     font-size: 15px;
     font-weight: 600;
