@@ -30,10 +30,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
          $token = base64_encode($user['login'] . "|" . time());
 
         // // Redirection vers dashboard
-         header("Location: ../index.php?token=".$token);
-        // exit();
-
-        header("Location:index.php");
+         header("Location:../index.php?token=".$token);
+         exit();
 
     } else {
         $error = "Login ou mot de passe incorrect";

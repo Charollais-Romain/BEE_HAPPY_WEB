@@ -76,13 +76,13 @@ file_put_contents("log.txt", "Type trame: 0x" . sprintf('%02X', $type) . " | byt
 // ─── TRAITEMENT ─────────────────────────────────────────────
 
 
-// 📦 TRAME POIDS + GPS (type 0x01, 10 octets)
+// 📦 TRAME MASSE + GPS (type 0x01, 10 octets)
 if ($type === 0x01 && count($bytes) >= 10) {
 
 
-    // Décodage poids (3 octets, grammes)
-    $poids = ($bytes[1] << 16) | ($bytes[2] << 8) | $bytes[3];
-    $poids = round($poids / 1000, 2); // grammes → kg
+    // Décodage masse (3 octets, grammes)
+    $masse = ($bytes[1] << 16) | ($bytes[2] << 8) | $bytes[3];
+    $masse = round($masse / 1000, 2); // grammes → kg
 
 
     // Décodage latitude (3 octets signé)
@@ -97,32 +97,32 @@ if ($type === 0x01 && count($bytes) >= 10) {
     $lon = $iLon / 10000;
 
 
-    file_put_contents("log.txt", "Poids+GPS | poids=$poids kg | lat=$lat | lon=$lon\n", FILE_APPEND);
+    file_put_contents("log.txt", "Masse+GPS | masse=$masse kg | lat=$lat | lon=$lon\n", FILE_APPEND);
 
 
     // Insertion mesure
     $stmt = $pdo->prepare("
-        INSERT INTO Ruche__mesure (poids, lat, lng, date_heure, id_capteur)
+        INSERT INTO Ruche__mesure (masse, lat, lng, date_heure, id_capteur)
         VALUES (?, ?, ?, NOW(), ?)
     ");
-    $stmt->execute([$poids, $lat, $lon, $id_capteur]);
+    $stmt->execute([$masse, $lat, $lon, $id_capteur]);
 
 
-    // Mise à jour poids dans Ruche__ruche
+    // Mise à jour masse dans Ruche__ruche
     $stmt = $pdo->prepare("
         UPDATE Ruche__ruche r
         INNER JOIN Ruche__capteur c ON c.id_ruche = r.id_ruche
-        SET r.poids = ?
+        SET r.masse = ?
         WHERE c.id_capteur = ?
     ");
-    $stmt->execute([$poids, $id_capteur]);
+    $stmt->execute([$masse, $id_capteur]);
 
 
-    file_put_contents("log.txt", "Poids+GPS enregistrés\n", FILE_APPEND);
+    file_put_contents("log.txt", "Masse+GPS enregistrés\n", FILE_APPEND);
 
 
 // 🚨 ALERTE POIDS
-} elseif ($data === "a1") {  // ← était "4131"
+} elseif ($data === "4131") {
 
 
     $stmt = $pdo->prepare("
@@ -141,7 +141,7 @@ if ($type === 0x01 && count($bytes) >= 10) {
 
 
 // 🚨 ALERTE GPS
-} elseif ($data === "a2") {  // ← était "4132"
+} elseif ($data === "4132") {
 
 
     $stmt = $pdo->prepare("
@@ -159,9 +159,32 @@ if ($type === 0x01 && count($bytes) >= 10) {
     file_put_contents("log.txt", "Alerte GPS enregistrée\n", FILE_APPEND);
 
 
+// ⚖️ MASSE SEULE (sans GPS)
+} elseif (is_numeric(hex2bin($data))) {
 
 
-    file_put_contents("log.txt", "Alerte GPS enregistrée\n", FILE_APPEND);
+    $decoded = hex2bin($data);
+    $masse   = round((float)$decoded / 1000, 2);
+
+
+    $stmt = $pdo->prepare("
+        INSERT INTO Ruche__mesure (masse, date_heure, id_capteur)
+        VALUES (?, NOW(), ?)
+    ");
+    $stmt->execute([$masse, $id_capteur]);
+
+
+    // Mise à jour masse dans Ruche__ruche
+    $stmt = $pdo->prepare("
+        UPDATE Ruche__ruche r
+        INNER JOIN Ruche__capteur c ON c.id_ruche = r.id_ruche
+        SET r.masse = ?
+        WHERE c.id_capteur = ?
+    ");
+    $stmt->execute([$masse, $id_capteur]);
+
+
+    file_put_contents("log.txt", "Masse seule: $masse kg\n", FILE_APPEND);
 
 
 // ❌ INCONNU

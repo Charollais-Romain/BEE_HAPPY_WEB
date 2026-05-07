@@ -1,3 +1,9 @@
+<?php
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+?>
+
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -16,7 +22,7 @@
     <?php   
     require_once 'includes/auth.php';
     ?>
-    <?php include '../includes/header.php'; ?>
+    <?php include 'includes/header.php'; ?>
     
     <div style="text-align: center;">
     <h2>Dashboard Ruche Connectée</h2>
@@ -39,8 +45,8 @@
 
     <!-- Scripts JS -->
     <script src="../public/assets/js/map.js"></script>
-    <script src="../public/assets/js/map.jschart.js"></script>
-    <script src="../public/assets/js/map.jssocket.js"></script>
+    <script src="../public/assets/js/chart.js"></script>
+    <script src="../public/assets/js/socket.js"></script>
     <script>
         document.getElementById("logoutBtn").addEventListener("click", () => {
         
@@ -50,6 +56,6 @@
         });
         
         </script>
- <?php include '../includes/footer.php'; ?>
+ <?php include 'includes/footer.php'; ?>
 </body>
 </html>
