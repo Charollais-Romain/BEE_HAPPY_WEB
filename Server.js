@@ -9,12 +9,12 @@ const io = new Server(server);
 
 app.use(express.static("public"));
 
-// Dashboard route
+// route Dashboard 
 app.get("/dashboard", (req, res) => {
     const token = req.query.token;
 
     if (!token) {
-        return res.redirect("http://10.187.52.4/~morganl/ProjetRuche/login.php");
+        return res.redirect("https://ruches.innovelectronique.fr/auth/login.php");
     }
 
     try {
@@ -26,20 +26,20 @@ app.get("/dashboard", (req, res) => {
 
         console.log("Utilisateur connecté :", login);
 
-        // Expiration check (1 hour)
+        // Expiration check (1 heure)
         const now = Math.floor(Date.now() / 1000);
         if (now - timestamp > 3600) {
-            return res.redirect("http://10.187.52.4/~morganl/ProjetRuche/login.php");
+            return res.redirect("https://ruches.innovelectronique.fr/auth/login.php");
         }
 
         res.sendFile(path.join(__dirname, "public", "index.php"));
     } catch (err) {
         console.log("Token invalide");
-        res.redirect("http://10.187.52.4/~morganl/ProjetRuche/login.php");
+        res.redirect("https://ruches.innovelectronique.fr/auth/login.php");
     }
 });
 
-// Socket connection
+// connection Socket 
 io.on("connection", (socket) => {
     console.log("Client connecté");
 
@@ -72,7 +72,7 @@ io.on("connection", (socket) => {
 
     sendData();
 
-    // Sends data every 3 seconds
+    // Envoie de données toute les 3 secondes
     const interval = setInterval(sendData, 3000);
 
     socket.on("disconnect", () => {
@@ -81,9 +81,9 @@ io.on("connection", (socket) => {
     });
 });
 
-// Start server
+// Démarrer le server
 server.listen(3000, () => {
-    console.log("Serveur lancé sur http://10.187.52.4/~morganl/ProjetRuche/index.php");
+    console.log("Serveur lancé sur https://ruches.innovelectronique.fr/index.php");
 });
 
 

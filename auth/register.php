@@ -70,7 +70,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
             // Redirections vers dashboard Node 
-            header("Location: http://localhost:3000/dashboard?token=" . $token);
+            header("Location:Location:ruches.innovelectronique.fr/index.php?token=" . $token);
             exit();
 
             } else {
@@ -92,7 +92,7 @@ $conn->close();
 <html>
 <head>
 <title>Créer un compte</title>
-<link rel="stylesheet" href="register.css">
+<link rel="stylesheet" href="../public/assets/css/register.css">
 </head>
 
 

@@ -27,10 +27,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $_SESSION['user'] = $user['login'];
 
         // Création du token
-        // $token = base64_encode($user['login'] . "|" . time());
+         $token = base64_encode($user['login'] . "|" . time());
 
-        // // Redirection vers Node.js
-        // header("Location: http://localhost:3000/dashboard?token=".$token);
+        // // Redirection vers dashboard
+         header("Location: ../index.php?token=".$token);
         // exit();
 
         header("Location:index.php");
@@ -47,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <meta charset="UTF-8">
 <title>Connexion</title>
 
-<link rel="stylesheet" href="login.css">
+<link rel="stylesheet" href="../public/assets/css/login.css">
 
 </head>
 <body>

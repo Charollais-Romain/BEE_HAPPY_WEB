@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>BEE HAPPY</title>
-    <link rel="stylesheet" href="assets/css/style.css?v=<?php echo filemtime('style.css'); ?>">
+    <link rel="stylesheet" href="../public/assets/css/style.css?v=<?php echo filemtime('style.css'); ?>">
 </head>
 <body>
 
@@ -13,10 +13,10 @@
 </div>
     <div>
         <div style="text-align: center;">
-        <a href="index.php">Dashboard</a>
-        <a href="hive.php">Ruches</a>
-        <a href="alerts.php">Alertes</a>
-        <a href="settings.php">Paramètres</a>
+        <a href="../index.php">Dashboard</a>
+        <a href="../public/hive.php">Ruches</a>
+        <a href="../public/alerts.php">Alertes</a>
+        <a href="../public/settings.php">Paramètres</a>
         <!-- <a href="logout.php">Logout</a> -->
         </div>
     </div>

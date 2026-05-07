@@ -2,10 +2,15 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<title>WORK IN PROGRESS</title>
+<title>Bee Alertes</title>
 
 </head>
 <body>
+<?php include 'header.php'; ?>
+<div style="text-align: center;">
+    <h2>Alertes</h2>
+</div>
 
-<h1>WORK IN PROGRESS!!!!!!</h1>
+
+
 </body>

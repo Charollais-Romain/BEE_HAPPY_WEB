@@ -28,7 +28,7 @@ const chart = new Chart(ctx, {
 function updateChart(temperature, hiveId) {
     const time = new Date().toLocaleTimeString();
 
-    // Add label once
+    // Ajout label une fois
     if (!chart.data.labels.includes(time)) {
         chart.data.labels.push(time);
 
@@ -38,7 +38,7 @@ function updateChart(temperature, hiveId) {
         }
     }
 
-    // Find dataset
+    // Cherche dataset
     let dataset = chart.data.datasets.find(ds => ds.label === hiveId);
 
     
