@@ -24,14 +24,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if ($user && $password === $user['password']) {
 
+        // session_regenerate_id(true);
+    
         $_SESSION['user'] = $user['login'];
-
-        // Création du token
-         $token = base64_encode($user['login'] . "|" . time());
-
-        // // Redirection vers dashboard
-         header("Location:../index.php?token=".$token);
-         exit();
+        $_SESSION['user_id'] = $user['id'];
+    
+        header("Location: ../index.php");
+        exit();
 
     } else {
         $error = "Login ou mot de passe incorrect";

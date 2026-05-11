@@ -1,8 +1,15 @@
 <?php
-ini_set('display_errors', 1);
-error_reporting(E_ALL);
+session_start();
+
+if (!isset($_SESSION['user'])) {
+    header("Location: /auth/login.php");
+    exit();
+}
 ?>
 
+   <?php   
+    // require_once 'includes/auth.php';
+    ?>
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -18,10 +25,10 @@ error_reporting(E_ALL);
 </head>
 
 <body>
-    <button id="logoutBtn" type="button">Déconnexion</button>
-    <?php   
-    require_once 'includes/auth.php';
-    ?>
+    <!-- <button id="logoutBtn" type="button">Déconnexion</button> -->
+    <button onclick="window.location.href='../auth/logout.php'">
+    Déconnexion
+    </button>
     <?php include 'includes/header.php'; ?>
     
     <div style="text-align: center;">
