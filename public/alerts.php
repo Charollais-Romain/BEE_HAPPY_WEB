@@ -6,10 +6,8 @@
 <link rel="stylesheet" href="../public/assets/css/alertes.css">
 </head>
 <body>
-<?php include 'includes/header.php'; ?>
-<div style="text-align: center;">
-    <h2>Alertes</h2>
-</div>
+
+<?php include '../includes/header.php'; ?>
 <div class="container">
 
     <h1>Alertes</h1>
@@ -20,67 +18,133 @@
 
 <script>
 
-const alertes = [
-    {
-        titre:"Température trop élevée",
-        message:"La ruche dépasse 40°C",
-        date:"2026-05-12 14:22",
-        niveau:"critical",
-        lu:false
-    },
-
-    {
-        titre:"Choc Critique",
-        message:"Choc de la ruche",
-        date:"2026-05-12 11:03",
-        niveau:"warning",
-        lu:true
-    },
-
-    {
-        titre:"Connexion rétablie",
-        message:"La ruche est reconnectée",
-        date:"2026-05-11 18:44",
-        niveau:"info",
-        lu:true
-    }
-];
-
 const container = document.getElementById('alertes-container');
 
-alertes.forEach(alert => {
+let alertesConnues = [];
 
-    let badge = '';
-    
-    if(alert.niveau === 'critical'){
-        badge = '<span class="badge badge-critical">Critique</span>';
+async function chargerAlertes(){
+
+    try{
+
+        const response = await fetch('get_alertes.php');
+
+        const alertes = await response.json();
+
+        container.innerHTML = '';
+
+        alertes.forEach(alert => {
+
+            const criticite = alert.criticite.toLowerCase();
+
+            let badgeClass = '';
+            let badgeText = '';
+
+            switch(alert.criticite){
+
+                case 'LOW':
+                    badgeClass = 'badge-low';
+                    badgeText = 'Faible';
+                    break;
+
+                case 'MEDIUM':
+                    badgeClass = 'badge-medium';
+                    badgeText = 'Moyenne';
+                    break;
+
+                case 'HIGH':
+                    badgeClass = 'badge-high';
+                    badgeText = 'Haute';
+                    break;
+
+                case 'CRITICAL':
+                    badgeClass = 'badge-critical';
+                    badgeText = 'Critique';
+                    break;
+            }
+
+            let nouvelleClasse = '';
+
+            if(!alertesConnues.includes(alert.id_alerte)){
+
+                alertesConnues.push(alert.id_alerte);
+
+                nouvelleClasse = 'new-alert';
+
+                // Popup uniquement pour critique
+                if(alert.criticite === 'CRITICAL'){
+
+                    afficherPopup(alert);
+                }
+            }
+
+            container.innerHTML += `
+            
+            <div class="alert-card ${criticite} ${nouvelleClasse}">
+
+                <div class="alert-header">
+
+                    <h3>${alert.nom}</h3>
+
+                    <span class="badge ${badgeClass}">
+                        ${badgeText}
+                    </span>
+
+                </div>
+
+                <p>${alert.message}</p>
+
+                <div class="alert-date">
+                    ${formatDate(alert.date_heure)}
+                </div>
+
+            </div>
+            
+            `;
+        });
+
     }
-    else if(alert.niveau === 'warning'){
-        badge = '<span class="badge badge-warning">Attention</span>';
+    catch(error){
+
+        console.error("Erreur chargement alertes :", error);
     }
-    else{
-        badge = '<span class="badge badge-info">Info</span>';
-    }
+}
 
-    container.innerHTML += `
-    
-    <div class="alert-card ${alert.niveau} ${alert.lu ? '' : 'unread'}">
+function formatDate(dateString){
 
-        <h3>
-            ${alert.titre}
-            ${badge}
-        </h3>
+    const date = new Date(dateString);
 
-        <p>${alert.message}</p>
+    return date.toLocaleString('fr-FR');
+}
 
-        <div class="alert-date">
-            ${alert.date}
-        </div>
+function afficherPopup(alert){
 
-    </div>
-    
+    const popup = document.createElement('div');
+
+    popup.style.position = 'fixed';
+    popup.style.top = '20px';
+    popup.style.right = '20px';
+    popup.style.background = '#b71c1c';
+    popup.style.color = 'white';
+    popup.style.padding = '15px';
+    popup.style.borderRadius = '10px';
+    popup.style.boxShadow = '0 0 10px rgba(0,0,0,0.3)';
+    popup.style.zIndex = '9999';
+
+    popup.innerHTML = `
+        <strong>ALERTE CRITIQUE</strong><br>
+        ${alert.nom}
     `;
-});
+
+    document.body.appendChild(popup);
+
+    setTimeout(() => {
+        popup.remove();
+    }, 5000);
+}
+
+chargerAlertes();
+
+setInterval(chargerAlertes, 5000);
 
 </script>
 </body>

@@ -1,10 +1,24 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['user'])) {
+header("Cache-Control: no-cache, no-store, must-revalidate");
+header("Pragma: no-cache");
+header("Expires: 0");
+
+if (!isset($_SESSION['user_id'])) {
     header("Location: /auth/login.php");
     exit();
 }
+// session_start();
+
+// header("Cache-Control: no-cache, no-store, must-revalidate");
+// header("Pragma: no-cache");
+// header("Expires: 0");
+
+// if (!isset($_SESSION['user_id'])) {
+//     header("Location: /auth/login.php");
+//     exit();
+// }
 ?>
 
    <?php   
@@ -26,9 +40,9 @@ if (!isset($_SESSION['user'])) {
 
 <body>
     <!-- <button id="logoutBtn" type="button">Déconnexion</button> -->
-    <button onclick="window.location.href='../auth/logout.php'">
+    <button id="logoutBtn" onclick="window.location.href='/logout.php'">
     Déconnexion
-    </button>
+</button>
     <?php include 'includes/header.php'; ?>
     
     <div style="text-align: center;">

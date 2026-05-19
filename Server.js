@@ -83,7 +83,8 @@ io.on("connection", (socket) => {
 
 // Démarrer le server
 server.listen(3000, () => {
-    console.log("Serveur lancé sur https://ruches.innovelectronique.fr/index.php");
+    // console.log("Serveur lancé sur https://ruches.innovelectronique.fr/index.php");
+    console.log("Serveur lancé sur http://localhost:3000");
 });
 
 
